@@ -25,10 +25,16 @@ sass:
 compress-site: yes
 
 encoding: "utf-8"
-compress_html: # - http://jch.penibelst.de/
+
+compress_html:
   clippings: all
+  comments: ["<!-- ", " -->"] # Whitespaces around the tags prevent conditional comments from being deleted.
+  endings: all
   ignore:
     envs: development
+  blanklines: false
+  profile: false
+  startings: []
 
 # Development Settings
 port: 4000
