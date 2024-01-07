@@ -1,0 +1,291 @@
+#
+# Be aware that even a small syntax error here can lead to failures in output.
+#
+
+sidebar:
+    position: left  # position of the sidebar : left or right
+    about: False    # set to False or comment line if you want to remove the "how to use?" in the sidebar
+    education: True # set to False if you want education in main section instead of in sidebar
+
+    # Profile information
+    name: Adam B. Kauffman
+    tagline: Software Developer
+    avatar: profile.webp  #place a 100x100 picture inside /assets/images/ folder and provide the name of the file below
+
+    # Sidebar links
+    email: akauffman33+resume.dev@gmail.com
+    phone: 971-258-0990
+    timezone: America/Los Angeles
+    citizenship: Portland, OR
+    website: adamkauffman.dev #do not add http://
+    linkedin: adam-kauffman-93b10b52
+    #xing: alandoe
+    github: A9G-Data-Droid
+    #telegram: # add your nickname without '@' sign
+    #gitlab:
+    #bitbucket:
+    #twitter: '@webjeda'
+    stack-overflow: 8173870/hackslash
+    #codewars:
+    #goodreads: # Number-Username, e.g. 123456-alandoe
+    pdf: /print
+
+    languages:
+      title: Languages
+      info:
+        - idiom: English
+          level: Native
+
+        - idiom: Spanish
+          level: Elementary
+
+    interests:
+      title: Interests
+      info:
+        - item: Skateboarding
+          link: /print
+
+        - item: Snowboarding
+          link: /print
+
+        - item: Partner Acrobatics
+          link: /print
+
+career-profile:
+    title: PROFESSIONAL SUMMARY
+    summary: |
+      Knowledge-driven software developer who enjoys problem-solving, designing effective systems, and collaborating with others. 
+      Deep understanding of computer hardware and software from over 15 years of professional experience working with a diverse set of technologies used in companies, ranging from small businesses to large enterprises. 
+      
+education:
+    title: EDUCATION
+    info:
+      - degree: IT Certification Series
+        university: Portland State University
+        time: 2009 - 2010 
+        details: |
+            - CompTIA: A+, 
+            - CompTIA: Network+
+            - CompTIA: Security+
+            - Microsoft: MCTS
+      - degree: Professional Development for Mechanical Engineers
+        university: Oregon Institute of Technology
+        time: 2007 - 2008
+        details: |
+            - Business and Technical Writing for Engineers
+            - Geometric Dimensioning and Tolerancing Level II
+
+experiences:
+    title: EXPERIENCE
+    info:
+      - role: Process Engineer 
+        time: 2016 - Present
+        company: Cascade Engineering Technologies, Inc. | Canby, OR
+        details: |
+          - Performed business systems analysis with a focus on removing paper and increasing staff efficiency
+          - Developed shop automation software:
+            - Metrology Enhanced Target Machining Program Creation, which generated 26k of new revenue for the company in the first 6 months
+            - CMM Report, Statistical Process Control, CP\CPK Generator
+            - Engineering Request System
+            - CNC Program Loader
+            - CNC Machine Data Collector (MDC) 
+            - Trial Balance Tool
+            - Epicor ERP REST API data extraction tools, and (SSRS) report creation
+          - Managed, supported, and updated legacy  software written by previous employees
+          - Managed Cybersecurity compliance to DFARS, NIST 800-171, CMMC, EAR\ITAR
+          - Primary point of contact for IT managed service providers  
+          - Procurement, installation, and security review of hardware and software
+          - Authored and updated documentation in the AS9100 quality system 
+          - Administration of Windows, Linux, HP-UX, network devices, CNC\CMM 
+          - Mentored junior staff including training, work assignment, and code review
+
+      - role: Backup Administration Specialist L3
+        time: 2012 - 2016
+        company: Symantec Corporation | Eugene, OR
+        details: |
+          - As a founding member of a new service, I shaped and defined “Managed Backup Services”, a newly-formed product offering
+          - Authored original documentation for processes, procedures, and work instructions
+          - Selected, interviewed, and hired employees to form a new team in Pune, India
+          - Wrote the training materials I used to train an L2 operations team in Pune, India
+          - Monitored up to 20 large enterprise-level customers at the same time 
+          - Administration of a wide variety of hardware and software configurations
+          - NetBackup administration for versions 6 through 7.7.2 and NetBackup appliances up to 2.7.2
+          - Installed and configured NetBackup OpsCenter, PureDisk, and MSDP 
+          - Wrote scripts to automate repetitive tasks and corresponding documentation on their use
+          - Used multiple ticketing systems for incident management: ServiceNow, ServiceDesk, and SalesForce
+
+      - role: Data Programmer
+        time: 2010 - 2011
+        company: Bureau of Land Management | Portland, OR
+        details: |	 
+          - Managed large tape conversion of backup data for BLM offices in Oregon and Washington
+          - Wrote scripts to automate repetitive tasks and documentation on processes used
+          - NetBackup 6-7 on IBM AIX, and Windows servers connected to various robotic libraries
+          - Coordinated physical tape management with Iron Mountain
+
+      - role: Quality Technician/Systems Administrator
+        time: 2007 - 2010
+        company: Cascade Engineering Technologies, Inc. | Milwaukie, OR
+        details: |	 
+          - Dimensional inspection using robotics and hand tools. Compared to drawing, and published reports
+          - Established network connections: VPN, FTP, Unix, Windows, CMM/CNC machines
+          - Performed tape backup and recovery of HP-UX systems
+          - Developed new security policies, software inventory, and firewall configuration
+          - Wrote shell scripts and VBA applications to make repetitive tasks quicker, easier, and less error prone
+
+certifications:
+      title: CERTIFICATIONS
+      list:
+        - name: "CompTIA: A+"
+          organization: CompTIA
+          credentialid: COMP001020119394
+          credentialurl: https://www.certmetrics.com/comptia/public/verification.aspx/
+          credentialname: CompTIA A+ (2009 edition)
+          details: |
+            Verification code: CQ367GELLL44Y8BV
+
+        - name: "CompTIA: Network+"
+          organization: CompTIA
+          credentialid: COMP001020119394
+          credentialurl: https://www.certmetrics.com/comptia/public/verification.aspx/
+          credentialname: CompTIA Network+ (2009 edition)
+          details: |
+            Verification code: VBRBCLNL1LVQY5GB
+
+        - name: "CompTIA: Security+"
+          organization: CompTIA
+          credentialid: COMP001020119394
+          credentialurl: https://www.certmetrics.com/comptia/public/verification.aspx/
+          credentialname: CompTIA Security+ (2008 edition)
+          details: |
+            Verification code: ZQ2BKRDDJ3B124K7
+
+        - name: "Microsoft: MCTS"
+          organization: Microsoft
+          credentialname: Windows 7
+          details: |
+            Microsoft® Certified Technology Specialist
+
+        - name: Veritas Certified Specialist
+          start: 2016
+          organization: Veritas
+          credentialname: Veritas NetBackup 7.6.1 Administrator
+          details: |
+            Veritas NetBackup 7.6.1 Administrator
+
+projects:
+    title: PROJECTS
+    intro: >
+      Some things I am proud of.
+    assignments:
+      - title: Targeting with Metrology Enhancement (TME) 
+        #link: "#hook"
+        tagline: "The largest software project I have ever created. Written in C# .NET8 with a Windows Service backend and a Blazor Server App front end."
+
+      - title: Training an L2 team in Pune, India
+        #link: "#"
+        tagline: "I interviewed, selected, and hired the team members. Then I flew to India to present training materials I wrote."
+
+      - title: Webmaster
+        #link: "#"
+        tagline: "I aquired some web space back in 2009. Since then I have developed 9 websites for 6 customers hosted there."
+
+oss:
+    title: OSS Contributions
+    intro: >
+      Some pull requests that got accepted.
+
+    contributions:
+      - title: EpicorRestAPI
+        link: "https://www.epiusers.help/t/epicor-rest-helper-nuget-updated-v2/76250"
+        tagline: "A helper library for making queries to Epicor back end."
+
+      - title: RazorEngineCore
+        link: "https://github.com/adoconnection/RazorEngineCore"
+        tagline: ".NET6 Razor Template Engine."
+
+      - title: Rubberduck
+        link: "https://github.com/rubberduck-vba/Rubberduck"
+        tagline: "Rubberduck aims to bring the VBE into this century."
+
+      - title: Version Control Add-in (msaccess-vcs-addin)
+        link: "https://github.com/joyfullservice/msaccess-vcs-addin"
+        tagline: "Easily export your Microsoft Access Database objects for use with a version control system like GitHub."
+
+      - title: Telnet (.NET)
+        link: "https://github.com/9swampy/Telnet"
+        tagline: "A NuGet library for Telnet communication from .NET projects."
+        
+# publications:
+#     title: Publications
+#     intro: |
+#       You can list your publications in this section. Lorem ipsum dolor sit
+#       amet, consectetur adipiscing elit. Vestibulum et ligula in nunc
+#       bibendum fringilla a eu lectus.
+#     papers:
+#       - title: The Art of Computer Programming
+#         link: "#"
+#         authors: Donald E. Knuth
+#         conference: Addison-Wesley, 1968
+
+#       - title: "Genetic Programming III: Darwinian Invention &amp; Problem Solving"
+#         link: "#"
+#         authors: Koza, J.R., Andre, D., Bennett, F.H., Keane, M.A.
+#         conference: "Morgan Kaufmann Publishers Inc., San Francisco, CA, USA, 1st edn. (1999)"
+
+#       - title: A syntax directed compiler for Algol 60
+#         link: "#"
+#         authors: Edgar T. Irons
+#         conference: "Comm. ACM 4 (1961), 51–55"
+
+skills:
+    title: Skills &amp; Proficiency
+
+    toolset:
+      - name: C#
+        level: 98%
+
+      - name: VB.NET
+        level: 98%
+
+      - name: SQL & SSRS
+        level: 50%
+
+      - name: VBA
+        level: 98%
+
+      - name: PowerShell, bash, batch 
+        level: 75%
+
+      - name: Git 
+        level: 75%
+
+      - name: HTML5 & CSS
+        level: 65%
+
+      - name: Docker
+        level: 65%
+ 
+      - name: Python
+        level: 25%
+
+      - name: JavaScript
+        level: 15%
+
+      - name: PHP
+        level: 15%
+
+      - name: G-Code
+        level: 15%
+
+      - name: Ruby on Rails
+        level: 11%
+
+      - name: Blazor & Razor
+        level: 50%
+
+      - name: MSAccess, SQLite, RealmDB
+        level: 50%
+
+footer: >
+    Designed with <i class="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>
