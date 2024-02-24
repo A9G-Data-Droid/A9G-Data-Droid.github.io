@@ -28,7 +28,7 @@ sidebar:
     stack-overflow: 8173870/hackslash
     #codewars:
     #goodreads: # Number-Username, e.g. 123456-alandoe
-    pdf: /print
+    pdf: /assets/Adam_Kauffman_Resume.pdf
 
     languages:
       title: Languages
