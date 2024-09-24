@@ -84,10 +84,11 @@ experiences:
         details: |
           - Performed business systems analysis with a focus on removing paper and increasing staff efficiency
           - Developed shop automation software:
-            - Metrology Enhanced Target Machining Program Creation, which generated 26k of new revenue for the company in the first 6 months
-            - CMM Report, Statistical Process Control, CP\CPK Generator
+            - Metrology Enhanced Target Machining Program Creation (TME)
+            - Automated Inspection Report Generator (UMESS and Calypso)
+            - Process Capability Analysis (CP\CPK) for Key Characteristics
             - Engineering Request System
-            - CNC Program Loader
+            - CNC Program Loader (DNC)
             - CNC Machine Data Collector (MDC) 
             - Trial Balance Tool
             - Epicor ERP REST API data extraction tools, and (SSRS) report creation
@@ -288,4 +289,4 @@ skills:
         level: 50%
 
 footer: >
-    Designed with <i class="fas fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>
+    Designed with <i class="fas fa-heart"></i> by <a href="https://themes.3rdwavemedia.com" target="_blank" rel="nofollow">Xiaoying Riley</a>
