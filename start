@@ -1,0 +1,4 @@
+#gem pristine --all
+bundle install
+bundle exec jekyll clean
+bundle exec jekyll serve
