@@ -1,13 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     const levelBars = document.querySelectorAll(".level-bar-inner");
-
-    // Set initial styles: width = 0% for all bars
     levelBars.forEach((bar) => {
         bar.style.width = "0";
-        bar.style.transition = "width 0.8s"; // Ensure animation transition is set
+        bar.style.transition = "width 0.8s";
     });
 
-    // Trigger when the element is observed
     const observer = new IntersectionObserver(
         (entries, observer) => {
             entries.forEach((entry) => {
@@ -24,7 +21,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     );
 
-    // Observe each progress bar
     levelBars.forEach((bar) => {
         observer.observe(bar);
     });

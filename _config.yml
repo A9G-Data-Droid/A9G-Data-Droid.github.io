@@ -32,10 +32,11 @@ compress_html:
   endings: all
   ignore:
     envs: development
-  blanklines: false
+  blanklines: true
   profile: false
   startings: []
   minify_js: true
+  minify_css: true
 
 exclude:
   - start
