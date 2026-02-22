@@ -1,51 +1,35 @@
-#Update all the sections by editing the data.yml file inside _data folder.
-
 # Site Settings
 title: Adam Kauffman Resume
 url: 'https://akauffman.dev'
 
-#change it according to your repository name
-# disabling since we are using a custom domain
-#baseurl: '/online-cv' 
-
 description: Professional CV for Adam Burck Kauffman
-# Style will be applied only after restarting the build or serve. Just choose one of the options.
-theme_skin: ceramic # blue turquoise green berry orange ceramic
+
+theme_skin: ceramic
 chrome_mobile_color: #use hex colors (ex:#1976d2) or leave empty if you don't want a color for chrome mobile searchbar
 
-# Tracker
-analytics: G-WN1VE7FBC0
+# Plugins
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+  - jekyll-feed
+  - jekyll-redirect-from
+  - jekyll-minify-html
+
+# SEO
+google_analytics: G-WN1VE7FBC0
 
 # Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # http://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed
+  silence_deprecations:
+    - import
+    - color-functions
+    - global-builtin
 
 # Build settings
 compress-site: yes
 
 encoding: "utf-8"
 
-compress_html:
-  clippings: all
-  comments: ["<!-- ", " -->"] # Whitespaces around the tags prevent conditional comments from being deleted.
-  endings: all
-  ignore:
-    envs: development
-  blanklines: true
-  profile: false
-  startings: []
-  minify_js: true
-  minify_css: true
-
-exclude:
-  - start
-  - Gemfile
-  - Gemfile.lock
-  - README.md
-  - docker-compose.yml
-
-# Development Settings
-port: 4000
-host: 0.0.0.0
-safe: false
+minify_html: true
