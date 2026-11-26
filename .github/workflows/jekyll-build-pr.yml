@@ -26,7 +26,7 @@ jobs:
     - name: Set up Ruby
       uses: ruby/setup-ruby@v1
       with:
-        ruby-version: '3.3'
+        ruby-version-file: .ruby-version
     - name: Debug Gem and Bundler Environment
       run: |
         gem environment
