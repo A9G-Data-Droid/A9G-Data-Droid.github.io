@@ -1,18 +1,23 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const levelBars = document.querySelectorAll(".level-bar-inner");
+    const levelBars = document.querySelectorAll(".level-bar-inner[data-level]");
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (prefersReducedMotion || !("IntersectionObserver" in window)) {
+        return;
+    }
+
     levelBars.forEach((bar) => {
         bar.style.width = "0";
-        bar.style.transition = "width 0.8s";
+        bar.style.transition = "width 0.8s ease-out";
     });
 
     const observer = new IntersectionObserver(
-        (entries, observer) => {
+        (entries, obs) => {
             entries.forEach((entry) => {
                 if (entry.isIntersecting) {
                     const bar = entry.target;
-                    const level = bar.dataset.level || "50%";
-                    bar.style.width = level;
-                    observer.unobserve(bar);
+                    bar.style.width = bar.dataset.level;
+                    obs.unobserve(bar);
                 }
             });
         },
@@ -23,5 +28,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     levelBars.forEach((bar) => {
         observer.observe(bar);
+    });
+
+    window.addEventListener("beforeprint", () => {
+        levelBars.forEach((bar) => {
+            bar.style.width = bar.dataset.level;
+        });
     });
 });
