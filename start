@@ -1,5 +1,6 @@
-#bundle clean --force
-#gem pristine --all
+#!/usr/bin/env bash
+set -euo pipefail
+
 bundle install
 bundle exec jekyll clean
 bundle exec jekyll serve
