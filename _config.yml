@@ -12,12 +12,18 @@ plugins:
 sass:
   sass_dir: _sass
   style: compressed
+  sourcemap: never
 
 # Build settings
 encoding: "utf-8"
+
+liquid:
+  error_mode: strict
+  strict_filters: true
 
 exclude:
   - CNAME
   - README.md
   - docker-compose.yml
+  - scripts
   - start
