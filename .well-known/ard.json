@@ -1,0 +1,37 @@
+---
+layout: null
+permalink: /.well-known/ard.json
+sitemap: false
+---
+{%- assign sidebar = site.data.data.sidebar -%}
+{
+  "specVersion": "0.91",
+  "host": {
+    "displayName": {{ sidebar.name | jsonify }},
+    "identifier": {{ sidebar.website | jsonify }}
+  },
+  "entries": [
+    {
+      "identifier": "urn:air:{{ sidebar.website }}:resume:json",
+      "displayName": "{{ sidebar.name }} Structured Resume (JSON Resume)",
+      "type": "application/json",
+      "url": {{ '/resume.json' | absolute_url | jsonify }},
+      "representativeQueries": [
+        "Get {{ sidebar.name }}'s resume in structured JSON format",
+        "List {{ sidebar.name }}'s work history, skills, and certifications",
+        "Check {{ sidebar.name }}'s software engineering experience and contact links"
+      ]
+    },
+    {
+      "identifier": "urn:air:{{ sidebar.website }}:resume:markdown",
+      "displayName": "{{ sidebar.name }} Full Resume (Markdown)",
+      "type": "text/markdown",
+      "url": {{ '/llms-full.txt' | absolute_url | jsonify }},
+      "representativeQueries": [
+        "Read {{ sidebar.name }}'s complete resume in Markdown",
+        "Summarize {{ sidebar.name }}'s career profile, projects, and open source contributions",
+        "Find {{ sidebar.name }}'s technical skills and education background"
+      ]
+    }
+  ]
+}

@@ -1,10 +1,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  {% if page.url == '/404.html' %}
+  <meta name="robots" content="noindex">
+  {% endif %}
   {% seo %}
 
-  <!-- Favicon -->
+  <!-- Favicon & Discovery -->
   <link rel="icon" href="{{ '/favicon.ico' | relative_url }}">
+  <link rel="ard" href="{{ '/.well-known/ard.json' | relative_url }}">
 
   {% unless page.layout == 'print' %}
   <script>
@@ -20,5 +24,9 @@
   {% endunless %}
 
   <!-- Theme CSS -->
+  <link rel="preload" href="{{ '/assets/font/IBMVGA8.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {% unless page.layout == 'print' %}
+  {% include scripts.html %}
+  {% endunless %}
 </head>
