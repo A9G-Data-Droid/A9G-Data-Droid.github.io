@@ -35,8 +35,8 @@ $sidebar-order: 1 !default;
 
 @font-face {
   font-family: "IBMVGA8";
-  src: url("../font/IBMVGA8.woff2") format("woff2"),
-       url("../font/IBMVGA8.woff") format("woff");
+  src: url("/assets/font/IBMVGA8.woff2") format("woff2"),
+       url("/assets/font/IBMVGA8.woff") format("woff");
   font-display: swap;
 }
 
@@ -270,7 +270,7 @@ a {
   }
 
   .avatar {
-    max-width: min(256px, 100%);
+    max-width: min(170px, 100%);
     margin-bottom: 15px;
     border: 0 solid var(--color-sidebar-text);
     border-radius: 100%;

@@ -23,9 +23,22 @@
   </script>
   {% endunless %}
 
-  <!-- Theme CSS -->
+  <!-- Theme CSS (inlined to avoid render-blocking stylesheet request) -->
   <link rel="preload" href="{{ '/assets/font/IBMVGA8.woff2' | relative_url }}" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="{{ '/assets/css/main.css' | relative_url }}">
+  {%- capture inline_scss -%}
+  @use "base" with (
+  {%- if site.data.data.sidebar.position == 'left' %}
+    $resume-order: 2,
+    $sidebar-order: 1
+  {%- else %}
+    $resume-order: 1,
+    $sidebar-order: 2
+  {%- endif %}
+  );
+  @use "responsive";
+  @use "print";
+  {%- endcapture -%}
+  <style>{{ inline_scss | scssify }}</style>
   {% unless page.layout == 'print' %}
   {% include scripts.html %}
   {% endunless %}

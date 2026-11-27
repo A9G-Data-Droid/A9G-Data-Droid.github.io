@@ -92,8 +92,26 @@ html_files.each do |file|
     errors << "#{file}: contains http://localhost URL"
   end
 
-  if html.match?(/\{\{|\}\}|\{%|%\}/)
+  html_without_styles = html
+  loop do
+    previous = html_without_styles
+    html_without_styles = html_without_styles.gsub(/<style\b[^>]*>.*?<\/style>/im, "")
+    break if html_without_styles == previous
+  end
+  if html_without_styles.match?(/\{\{|\}\}|\{%|%\}/) || html.match?(/\{\{|\{%/)
     errors << "#{file}: contains unrendered Liquid template syntax"
+  end
+
+  html.scan(/<style\b[^>]*>(.*?)<\/style>/im) do |style_match|
+    style_match[0].scan(/url\(\s*(['"]?)([^)'"]+)\1\s*\)/i) do |url_match|
+      ref = url_match[1].strip
+      next if ref.empty? || ref.start_with?("data:", "http://", "https://", "//", "#")
+
+      clean_ref = ref.split(/[?#]/).first
+      unless clean_ref.start_with?("/") && local_target_exists?(clean_ref)
+        errors << "#{file}: invalid or missing inline CSS url() target: #{ref}"
+      end
+    end
   end
 
   if html.match?(/Liquid (?:error|Warning)/i)
