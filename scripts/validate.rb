@@ -92,7 +92,12 @@ html_files.each do |file|
     errors << "#{file}: contains http://localhost URL"
   end
 
-  html_without_styles = html.gsub(/<style\b[^>]*>.*?<\/style>/im, "")
+  html_without_styles = html
+  loop do
+    previous = html_without_styles
+    html_without_styles = html_without_styles.gsub(/<style\b[^>]*>.*?<\/style>/im, "")
+    break if html_without_styles == previous
+  end
   if html_without_styles.match?(/\{\{|\}\}|\{%|%\}/) || html.match?(/\{\{|\{%/)
     errors << "#{file}: contains unrendered Liquid template syntax"
   end
