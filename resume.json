@@ -1,0 +1,117 @@
+---
+layout: null
+permalink: /resume.json
+sitemap: false
+---
+{%- assign data = site.data.data -%}
+{%- assign sidebar = data.sidebar -%}
+{%- assign loc_parts = sidebar.location | split: ", " -%}
+{
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": {{ sidebar.name | jsonify }},
+    "label": {{ sidebar.tagline | jsonify }},
+    "image": {{ '/assets/images/' | append: sidebar.avatar | absolute_url | jsonify }},
+    "email": {{ sidebar.email | jsonify }},
+    "phone": {{ sidebar.phone | jsonify }},
+    "url": {{ '/' | absolute_url | jsonify }},
+    "summary": {{ data.career-profile.summary | strip | replace: "
+", " " | jsonify }},
+    "location": {
+      "city": {{ loc_parts[0] | jsonify }},
+      "region": {{ loc_parts[1] | jsonify }},
+      "countryCode": "US"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": {{ sidebar.github | jsonify }},
+        "url": {{ 'https://github.com/' | append: sidebar.github | jsonify }}
+      },
+      {
+        "network": "LinkedIn",
+        "username": {{ sidebar.linkedin | jsonify }},
+        "url": {{ 'https://linkedin.com/in/' | append: sidebar.linkedin | jsonify }}
+      },
+      {
+        "network": "Stack Overflow",
+        "username": {{ sidebar.stack-overflow | jsonify }},
+        "url": {{ 'https://stackoverflow.com/users/' | append: sidebar.stack-overflow | jsonify }}
+      }
+    ]
+  },
+  "work": [
+    {%- for job in data.experiences.info %}
+    {%- assign company_parts = job.company | split: " | " -%}
+    {%- assign time_parts = job.time | split: " - " -%}
+    {
+      "name": {{ company_parts[0] | strip | jsonify }},
+      "location": {{ company_parts[1] | strip | jsonify }},
+      "position": {{ job.role | jsonify }},
+      "startDate": {{ time_parts[0] | strip | jsonify }},
+      {%- unless time_parts[1] == "Present" %}
+      "endDate": {{ time_parts[1] | strip | jsonify }},
+      {%- endunless %}
+      "summary": {{ job.details | strip | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ],
+  "education": [
+    {%- for ed in data.education.info %}
+    {%- assign ed_time = ed.time | split: " - " -%}
+    {
+      "institution": {{ ed.university | jsonify }},
+      "area": {{ ed.degree | jsonify }},
+      "startDate": {{ ed_time[0] | strip | jsonify }},
+      "endDate": {{ ed_time[1] | strip | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ],
+  "certificates": [
+    {%- for cert in data.certifications.list %}
+    {
+      "name": {{ cert.name | jsonify }},
+      "issuer": {{ cert.organization | jsonify }}{% if cert.start %},
+      "date": {{ cert.start | append: "" | jsonify }}{% endif %}{% if cert.credentialurl %},
+      "url": {{ cert.credentialurl | jsonify }}{% endif %}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ],
+  "projects": [
+    {%- for project in data.projects.assignments %}
+    {
+      "name": {{ project.title | jsonify }},
+      "description": {{ project.tagline | jsonify }}
+    },
+    {%- endfor %}
+    {%- for contribution in data.oss.contributions %}
+    {
+      "name": {{ contribution.title | jsonify }},
+      "description": {{ contribution.tagline | jsonify }},
+      "url": {{ contribution.link | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ],
+  "skills": [
+    {%- for skill in data.skills.toolset %}
+    {
+      "name": {{ skill.name | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ],
+  "languages": [
+    {%- for lang in sidebar.languages.info %}
+    {
+      "language": {{ lang.idiom | jsonify }},
+      "fluency": {{ lang.level | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ],
+  "interests": [
+    {%- for interest in sidebar.interests.info %}
+    {
+      "name": {{ interest.item | jsonify }}
+    }{% unless forloop.last %},{% endunless %}
+    {%- endfor %}
+  ]
+}

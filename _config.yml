@@ -21,6 +21,9 @@ liquid:
   error_mode: strict
   strict_filters: true
 
+include:
+  - .well-known
+
 exclude:
   - CNAME
   - README.md

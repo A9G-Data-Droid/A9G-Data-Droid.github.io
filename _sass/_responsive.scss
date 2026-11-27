@@ -29,6 +29,10 @@
     display: block;
     margin-bottom: 0;
   }
+
+  .theme-toggle:focus-visible {
+    outline-color: var(--color-sidebar-link-hover);
+  }
 }
 
 /* Medium devices (desktops, 992px and up) */

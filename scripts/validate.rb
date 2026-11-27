@@ -4,6 +4,7 @@
 Encoding.default_external = Encoding::UTF_8
 Encoding.default_internal = Encoding::UTF_8
 
+require "json"
 require "pathname"
 require "rexml/document"
 require "uri"
@@ -13,8 +14,14 @@ SITE_DIR = "_site"
 REQUIRED_FILES = %w[
   index.html
   print.html
+  404.html
+  llms.txt
+  llms-full.txt
+  resume.json
+  .well-known/ard.json
   assets/css/main.css
   assets/js/main.js
+  assets/font/IBMVGA8.woff2
   assets/Adam_Kauffman_Resume.pdf
   favicon.ico
   sitemap.xml
@@ -169,6 +176,9 @@ if File.file?(sitemap_path) && site_url.start_with?("https://")
           next
         end
         path = URI.parse(loc).path
+        if path == "/404.html"
+          errors << "#{sitemap_path}: should not include /404.html"
+        end
         unless local_target_exists?(path)
           errors << "#{sitemap_path}: <loc> target missing in #{SITE_DIR}/: #{loc}"
         end
@@ -203,7 +213,77 @@ if File.file?(icon_defs_path)
   end
 end
 
-# 8. Guard Gemfile.lock against dropping Cloudflare's precompiled binary platform
+# 8. Validate agent discoverability files (llms.txt, llms-full.txt, resume.json, .well-known/ard.json)
+%w[llms.txt llms-full.txt].each do |md_name|
+  md_path = File.join(SITE_DIR, md_name)
+  next unless File.file?(md_path)
+
+  content = File.read(md_path)
+  if content.match?(/\{\{|\}\}|\{%|%\}/)
+    errors << "#{md_path}: contains unrendered Liquid template syntax"
+  end
+  unless content.match?(/^#\s+\S/)
+    errors << "#{md_path}: missing required H1 header"
+  end
+  if md_name == "llms.txt" && !content.match?(/\[[^\]]+\]\(https?:\/\/[^)]+\)/)
+    errors << "#{md_path}: missing Markdown links"
+  end
+end
+
+resume_json_path = File.join(SITE_DIR, "resume.json")
+if File.file?(resume_json_path)
+  begin
+    resume = JSON.parse(File.read(resume_json_path))
+    unless resume.is_a?(Hash) && resume.dig("basics", "name").is_a?(String) && resume["work"].is_a?(Array) && resume["skills"].is_a?(Array)
+      errors << "#{resume_json_path}: missing required JSON Resume fields (basics.name, work, skills)"
+    end
+  rescue JSON::ParserError => e
+    errors << "#{resume_json_path}: invalid JSON (#{e.message.lines.first.strip})"
+  end
+end
+
+ard_path = File.join(SITE_DIR, ".well-known/ard.json")
+if File.file?(ard_path)
+  begin
+    ard = JSON.parse(File.read(ard_path))
+    entries = ard.is_a?(Hash) ? ard["entries"] : nil
+    if !entries.is_a?(Array) || entries.empty?
+      errors << "#{ard_path}: expected non-empty entries array"
+    else
+      entries.each_with_index do |entry, idx|
+        prefix = "#{ard_path}: entries[#{idx}]"
+        unless entry.is_a?(Hash)
+          errors << "#{prefix} must be an object"
+          next
+        end
+        unless entry["identifier"].is_a?(String) && entry["identifier"].match?(/\Aurn:air:[a-zA-Z0-9.-]+(:[a-zA-Z0-9._-]+)+\z/)
+          errors << "#{prefix}: invalid ARD identifier URN (#{entry['identifier'].inspect})"
+        end
+        errors << "#{prefix}: missing displayName" if entry["displayName"].to_s.strip.empty?
+        errors << "#{prefix}: missing type" if entry["type"].to_s.strip.empty?
+        has_url = entry.key?("url") && !entry["url"].to_s.strip.empty?
+        has_data = entry.key?("data") && !entry["data"].nil?
+        unless has_url ^ has_data
+          errors << "#{prefix}: must specify exactly one of 'url' or 'data'"
+        end
+        if has_url && site_url.start_with?("https://") && entry["url"].start_with?("#{site_url}/")
+          target_path = URI.parse(entry["url"]).path
+          unless local_target_exists?(target_path)
+            errors << "#{prefix}: url target missing in #{SITE_DIR}/: #{entry['url']}"
+          end
+        end
+        queries = entry["representativeQueries"]
+        unless queries.is_a?(Array) && queries.length.between?(2, 5) && queries.all? { |q| q.is_a?(String) && !q.strip.empty? }
+          errors << "#{prefix}: representativeQueries must be an array of 2 to 5 non-empty strings"
+        end
+      end
+    end
+  rescue JSON::ParserError => e
+    errors << "#{ard_path}: invalid JSON (#{e.message.lines.first.strip})"
+  end
+end
+
+# 9. Guard Gemfile.lock against dropping Cloudflare's precompiled binary platform
 if File.file?("Gemfile.lock")
   lockfile = File.read("Gemfile.lock")
   platforms_section = lockfile[/^PLATFORMS\n(.*?)(?:\n\n|\z)/m, 1].to_s

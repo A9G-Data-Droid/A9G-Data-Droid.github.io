@@ -1,0 +1,36 @@
+---
+layout: null
+permalink: /llms.txt
+sitemap: false
+---
+{%- assign data = site.data.data -%}
+{%- assign sidebar = data.sidebar -%}
+# {{ sidebar.name }}
+
+> {{ sidebar.tagline }} based in {{ sidebar.location }}. {{ data.career-profile.summary | strip | replace: "
+", " " }}
+
+## Resume Formats
+
+- [HTML Resume]({{ '/' | absolute_url }}): Interactive web resume for {{ sidebar.name }}
+- [Full Markdown Resume]({{ '/llms-full.txt' | absolute_url }}): Complete resume details in plain Markdown for LLMs and agents
+- [Structured JSON Resume]({{ '/resume.json' | absolute_url }}): Machine-readable resume following the JSON Resume schema
+- [Print-Friendly Resume]({{ '/print' | absolute_url }}): Clean print-formatted HTML version
+- [PDF Resume]({{ sidebar.pdf | absolute_url }}): Downloadable PDF copy of the resume
+- [Agentic Resource Discovery Manifest]({{ '/.well-known/ard.json' | absolute_url }}): ARD manifest cataloging machine-readable resume resources
+
+## Profiles
+
+- [GitHub](https://github.com/{{ sidebar.github }}): Source code and open source activity
+- [LinkedIn](https://linkedin.com/in/{{ sidebar.linkedin }}): Professional profile
+- [Stack Overflow](https://stackoverflow.com/users/{{ sidebar.stack-overflow }}): Technical Q&A profile
+
+## Open Source Contributions
+{% for contribution in data.oss.contributions %}
+- [{{ contribution.title }}]({{ contribution.link }}): {{ contribution.tagline }}
+{%- endfor %}
+
+## Optional
+
+- [Sitemap]({{ '/sitemap.xml' | absolute_url }}): XML sitemap of public pages
+- [Robots Policy]({{ '/robots.txt' | absolute_url }}): Crawler rules

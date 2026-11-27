@@ -1,0 +1,64 @@
+---
+layout: null
+permalink: /llms-full.txt
+sitemap: false
+---
+{%- assign data = site.data.data -%}
+{%- assign sidebar = data.sidebar -%}
+# {{ sidebar.name }}
+
+> {{ sidebar.tagline }} — {{ sidebar.location }}
+
+- Website: {{ '/' | absolute_url }}
+- Email: {{ sidebar.email }}
+- Phone: {{ sidebar.phone }}
+- GitHub: https://github.com/{{ sidebar.github }}
+- LinkedIn: https://linkedin.com/in/{{ sidebar.linkedin }}
+- Stack Overflow: https://stackoverflow.com/users/{{ sidebar.stack-overflow }}
+- PDF Resume: {{ sidebar.pdf | absolute_url }}
+- JSON Resume: {{ '/resume.json' | absolute_url }}
+
+## {{ data.career-profile.title }}
+
+{{ data.career-profile.summary | strip }}
+
+## {{ data.experiences.title }}
+{% for job in data.experiences.info %}
+### {{ job.role }} — {{ job.company }} ({{ job.time }})
+
+{{ job.details | strip }}
+{% endfor %}
+## {{ data.projects.title }}
+{% for project in data.projects.assignments %}
+- **{{ project.title }}**: {{ project.tagline }}
+{%- endfor %}
+
+## {{ data.oss.title }}
+{% for contribution in data.oss.contributions %}
+- [{{ contribution.title }}]({{ contribution.link }}): {{ contribution.tagline }}
+{%- endfor %}
+
+## {{ data.skills.title }}
+{% for skill in data.skills.toolset %}
+- {{ skill.name }}
+{%- endfor %}
+
+## {{ data.certifications.title }}
+{% for cert in data.certifications.list %}
+- **{{ cert.name }}** — {{ cert.organization }}{% if cert.start %} ({{ cert.start }}){% endif %}: {{ cert.credentialname }}{% if cert.credentialid %} (ID: {{ cert.credentialid }}){% endif %}{% if cert.credentialurl %} — [Verify]({{ cert.credentialurl }}){% endif %}{% if cert.details %} — {{ cert.details | strip }}{% endif %}
+{%- endfor %}
+
+## {{ data.education.title }}
+{% for ed in data.education.info %}
+- **{{ ed.degree }}**, {{ ed.university }} ({{ ed.time }})
+{%- endfor %}
+
+## {{ sidebar.languages.title }}
+{% for lang in sidebar.languages.info %}
+- {{ lang.idiom }} ({{ lang.level }})
+{%- endfor %}
+
+## {{ sidebar.interests.title }}
+{% for interest in sidebar.interests.info %}
+- {{ interest.item }}
+{%- endfor %}

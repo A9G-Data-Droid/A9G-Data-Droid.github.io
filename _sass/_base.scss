@@ -35,7 +35,8 @@ $sidebar-order: 1 !default;
 
 @font-face {
   font-family: "IBMVGA8";
-  src: url("../font/IBMVGA8.woff") format("woff");
+  src: url("../font/IBMVGA8.woff2") format("woff2"),
+       url("../font/IBMVGA8.woff") format("woff");
   font-display: swap;
 }
 
@@ -128,13 +129,22 @@ small {
 }
 
 a {
-  color: var(--color-accent);
-  text-decoration: none;
+  color: var(--color-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-skip-ink: auto;
 
   &:hover,
   &:focus-visible {
-    text-decoration: underline;
-    color: var(--color-accent-hover);
+    color: var(--color-link-hover);
+    text-decoration-thickness: 2px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
@@ -260,7 +270,7 @@ a {
   }
 
   .avatar {
-    max-width: 150px;
+    max-width: min(256px, 100%);
     margin-bottom: 15px;
     border: 0 solid var(--color-sidebar-text);
     border-radius: 100%;
@@ -393,6 +403,14 @@ a {
     }
   }
 
+  .error-page {
+    padding: 20px 0;
+
+    .error-page-link {
+      font-weight: 600;
+    }
+  }
+
   .experiences-section,
   .certifications-section {
     .item {
@@ -439,10 +457,10 @@ a {
 
   .project-title {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     margin-top: 0;
     margin-bottom: 5px;
-    color: var(--color-accent);
+    color: var(--color-text-primary);
   }
 
   .projects-section,
