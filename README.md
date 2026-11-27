@@ -44,6 +44,7 @@ graph TD;
     C# --> Razor
     Razor --> Blazor
     JavaScript --> Razor
+    JavaScript --> TypeScript
     HTML --> Jekyll
     Jekyll --> Ruby
 ```
