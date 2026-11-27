@@ -3,4 +3,5 @@ set -euo pipefail
 
 bundle install
 bundle exec jekyll clean
+JEKYLL_ENV=production bundle exec jekyll build --strict_front_matter && ruby scripts/validate.rb
 bundle exec jekyll serve

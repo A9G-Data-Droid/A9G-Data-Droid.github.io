@@ -4,6 +4,18 @@
 
 <body>
   <div class="wrapper">
+    <button
+      type="button"
+      class="theme-toggle"
+      id="theme-toggle"
+      aria-label="Switch to dark mode"
+      aria-pressed="false"
+      title="Switch to dark mode"
+    >
+      <span class="theme-toggle-icon theme-toggle-icon--sun" aria-hidden="true">{% include icon.html name="sun" %}</span>
+      <span class="theme-toggle-icon theme-toggle-icon--moon" aria-hidden="true">{% include icon.html name="moon" %}</span>
+    </button>
+
     {% include sidebar.html %}
 
     <main class="main-wrapper">

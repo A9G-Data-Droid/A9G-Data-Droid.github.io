@@ -4,20 +4,32 @@ permissions:
   contents: read
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+
+      - name: Check JavaScript syntax
+        run: node --check assets/js/main.js
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
+          ruby-version: '3.4'
           bundler-cache: true
 
       - name: Build site
@@ -25,36 +37,5 @@ jobs:
           JEKYLL_ENV: production
         run: bundle exec jekyll build --strict_front_matter
 
-      - name: Validate built HTML and local links
-        run: |
-          ruby -e '
-            errors = []
-            Dir.glob("_site/**/*.html").each do |file|
-              html = File.read(file)
-              html.scan(/\b(?:href|src)="([^"]*)"/) do |match|
-                url = match[0]
-                if url.empty?
-                  errors << "#{file}: empty href/src attribute"
-                elsif url.start_with?("//http://", "//https://")
-                  errors << "#{file}: malformed protocol-relative URL: #{url}"
-                elsif url.start_with?("http://")
-                  errors << "#{file}: insecure http:// link: #{url}"
-                elsif url.start_with?("/") && !url.start_with?("//")
-                  path = url.split(/[?#]/).first
-                  candidates = [
-                    File.join("_site", path),
-                    File.join("_site", path, "index.html"),
-                    File.join("_site", "#{path}.html")
-                  ]
-                  unless candidates.any? { |c| File.exist?(c) }
-                    errors << "#{file}: missing local target: #{url}"
-                  end
-                end
-              end
-            end
-            unless errors.empty?
-              warn errors.join("\n")
-              exit 1
-            end
-            puts "HTML and local link validation passed."
-          '
+      - name: Validate built site and CI invariants
+        run: ruby scripts/validate.rb

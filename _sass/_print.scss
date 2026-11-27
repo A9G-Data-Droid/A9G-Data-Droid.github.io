@@ -1,16 +1,36 @@
+@use "variables" as *;
+
 @media print {
   @page {
     size: A4;
   }
 
+  :root,
+  :root[data-theme="dark"],
+  body,
+  body.print-page {
+    color-scheme: light;
+    @include light-theme-tokens;
+  }
+
   body {
     font-size: 12pt;
     padding: 0;
+    background: #ffffff !important;
+    color: $text-color-secondary !important;
+  }
+
+  .theme-toggle {
+    display: none !important;
   }
 
   .wrapper {
     max-width: none;
     box-shadow: none;
+  }
+
+  .main-wrapper {
+    background: #ffffff !important;
   }
 
   img.avatar {
