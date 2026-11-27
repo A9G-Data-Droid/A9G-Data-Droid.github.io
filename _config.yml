@@ -1,35 +1,23 @@
 # Site Settings
 title: Adam Kauffman Resume
-url: 'https://akauffman.dev'
-
+url: 'https://adamkauffman.dev'
 description: Professional CV for Adam Burck Kauffman
-
-theme_skin: ceramic
-chrome_mobile_color: #use hex colors (ex:#1976d2) or leave empty if you don't want a color for chrome mobile searchbar
 
 # Plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-feed
-  - jekyll-redirect-from
-  - jekyll-minify-html
-
-# SEO
-google_analytics: G-WN1VE7FBC0
 
 # Sass/SCSS
 sass:
   sass_dir: _sass
   style: compressed
-  silence_deprecations:
-    - import
-    - color-functions
-    - global-builtin
 
 # Build settings
-compress-site: yes
-
 encoding: "utf-8"
 
-minify_html: true
+exclude:
+  - CNAME
+  - README.md
+  - docker-compose.yml
+  - start

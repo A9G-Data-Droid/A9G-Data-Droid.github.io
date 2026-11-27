@@ -3,37 +3,58 @@ name: Jekyll Build Pull Requests
 permissions:
   contents: read
 
-on: 
+on:
   pull_request:
     branches:
-    - main
+      - main
   workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Log level'
-        required: true
-        default: 'warning'
-        type: choice
-        options:
-        - info
-        - warning
-        - debug
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: Set up Ruby
-      uses: ruby/setup-ruby@v1
-      with:
-        ruby-version-file: .ruby-version
-    - name: Debug Gem and Bundler Environment
-      run: |
-        gem environment
-        bundle env
-    - name: Update Bundler
-      run: gem install bundler
-    - name: Install dependencies
-      run: bundle install
-    - name: Build site
-      run: bundle exec jekyll build
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+
+      - name: Build site
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --strict_front_matter
+
+      - name: Validate built HTML and local links
+        run: |
+          ruby -e '
+            errors = []
+            Dir.glob("_site/**/*.html").each do |file|
+              html = File.read(file)
+              html.scan(/\b(?:href|src)="([^"]*)"/) do |match|
+                url = match[0]
+                if url.empty?
+                  errors << "#{file}: empty href/src attribute"
+                elsif url.start_with?("//http://", "//https://")
+                  errors << "#{file}: malformed protocol-relative URL: #{url}"
+                elsif url.start_with?("http://")
+                  errors << "#{file}: insecure http:// link: #{url}"
+                elsif url.start_with?("/") && !url.start_with?("//")
+                  path = url.split(/[?#]/).first
+                  candidates = [
+                    File.join("_site", path),
+                    File.join("_site", path, "index.html"),
+                    File.join("_site", "#{path}.html")
+                  ]
+                  unless candidates.any? { |c| File.exist?(c) }
+                    errors << "#{file}: missing local target: #{url}"
+                  end
+                end
+              end
+            end
+            unless errors.empty?
+              warn errors.join("\n")
+              exit 1
+            end
+            puts "HTML and local link validation passed."
+          '

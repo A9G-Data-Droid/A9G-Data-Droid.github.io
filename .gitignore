@@ -1,6 +1,10 @@
-# Cache
+# Cache and build outputs
 _site/
 .sass-cache/
 .jekyll-metadata
-.jekyll-cache
+.jekyll-cache/
+
+# IDE and local bundler state
 .idea/
+.bundle/
+/vendor/bundle

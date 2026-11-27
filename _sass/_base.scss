@@ -1,26 +1,49 @@
-/* ======= Base ======= */
+/*
+ * Based on Orbit - Responsive Resume/CV Template for Developers
+ * Author: Xiaoying Riley (https://themes.3rdwavemedia.com/)
+ * License: Creative Commons Attribution 3.0 License
+ */
+
+@use "sass:color";
+@use "variables" as *;
+
+$resume-order: 2 !default;
+$sidebar-order: 1 !default;
+
+/* ======= Fonts ======= */
 
 @font-face {
   font-family: "IBMVGA8";
-  src: url("../font/IBMVGA8.woff");
-  font-display: swap
+  src: url("../font/IBMVGA8.woff") format("woff");
+  font-display: swap;
 }
 
-@font-face {
-  font-family: "Segoe UI";
-  font-weight: 400;
-  src: local("Segoe UI");
-  font-display: swap
+/* ======= Reset & Utilities (Bootstrap replacement) ======= */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
 }
 
 body {
-  font-family: "Segoe UI",Arial; 
+  margin: 0;
+  font-family: "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
   font-size: 16px;
+  line-height: 1.5;
   color: $text-color-secondary;
   background: $backdrop;
   padding: 30px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+body.print-page {
+  padding: 0;
+
+  .wrapper {
+    max-width: none;
+  }
 }
 
 h1,
@@ -29,23 +52,69 @@ h3,
 h4,
 h5,
 h6 {
+  margin-top: 0;
+  margin-bottom: 0.5rem;
   font-weight: 700;
-}
-
-a {
-  color: darken($theme-color, 15%);
-  &:hover {
-    text-decoration: underline;
-    color: darken($theme-color, 30%);
-  }
-  &:focus {
-    text-decoration: none;
-  }
+  line-height: 1.2;
 }
 
 p {
+  margin-top: 0;
+  margin-bottom: 1rem;
   line-height: 1.5;
 }
+
+ul,
+ol {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  padding-left: 2rem;
+
+  ul,
+  ol {
+    margin-bottom: 0;
+  }
+}
+
+img {
+  vertical-align: middle;
+  max-width: 100%;
+  height: auto;
+}
+
+small {
+  font-size: 0.875em;
+}
+
+.list-unstyled {
+  padding-left: 0;
+  list-style: none;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.icon {
+  display: inline-block;
+  height: 1em;
+  width: auto;
+  vertical-align: -0.125em;
+  overflow: visible;
+}
+
+a {
+  color: color.adjust($theme-color, $lightness: -15%);
+  text-decoration: none;
+
+  &:hover,
+  &:focus-visible {
+    text-decoration: underline;
+    color: color.adjust($theme-color, $lightness: -30%);
+  }
+}
+
+/* ======= Layout ======= */
 
 .wrapper {
   display: grid;
@@ -54,68 +123,78 @@ p {
   max-width: 1170px;
   margin: 0 auto;
   position: relative;
-  @include box-shadow(0px 2px 4px rgba(0, 0, 0, 0.1));
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .sidebar-wrapper {
-  font-family: "IBMVGA8",monospace;
+  font-family: "IBMVGA8", monospace;
   grid-column: span 3;
   order: $sidebar-order;
   background: $theme-color;
   color: #fff;
+
   a {
     color: #fff;
+
+    &:hover,
+    &:focus-visible {
+      color: #fff;
+    }
   }
+
   .profile-container {
     padding: 30px;
-    //background: darken($theme-color, 10%);
     background: rgba(0, 0, 0, 0.2);
     text-align: center;
     color: #fff;
   }
+
   .name {
     font-size: 32px;
     font-weight: 900;
     margin-top: 0;
     margin-bottom: 10px;
   }
+
   .tagline {
-    color: rgba(256, 256, 256, 0.6);
+    color: rgba(255, 255, 255, 0.8);
     font-size: 16px;
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 0;
   }
-  .profile {
-    margin-bottom: 15px;
-  }
 
   .avatar {
-    //used for profile image
     max-width: 150px;
     margin-bottom: 15px;
-    border: 0px solid #fff;
+    border: 0 solid #fff;
     border-radius: 100%;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
   }
+
   .contact-list {
-    .fas,
-    .fab,
-    .far {
-      margin-right: 5px;
-      font-size: 18px;
-      vertical-align: middle;
+    margin-bottom: 0;
+
+    .icon {
+      margin-right: 8px;
+      width: 18px;
+      height: 18px;
+      vertical-align: -0.2em;
     }
+
     li {
       margin-bottom: 15px;
+
       &:last-child {
         margin-bottom: 0;
       }
     }
   }
+
   .container-block {
     padding: 30px;
   }
+
   .container-block-title {
     text-transform: uppercase;
     font-size: 16px;
@@ -123,50 +202,50 @@ p {
     margin-top: 0;
     margin-bottom: 15px;
   }
+
   .degree {
     font-size: 14px;
     margin-top: 0;
     margin-bottom: 5px;
   }
+
   .education-container {
     .item {
       margin-bottom: 15px;
+
       &:last-child {
         margin-bottom: 0;
       }
     }
+
     .meta {
-      color: rgba(256, 256, 256, 0.6);
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
       font-weight: 500;
-      margin-bottom: 0px;
+      margin-bottom: 0;
       margin-top: 0;
     }
+
     .time {
-      color: rgba(256, 256, 256, 0.6);
+      color: rgba(255, 255, 255, 0.8);
       font-weight: 500;
-      margin-bottom: 0px;
+      margin-bottom: 0;
     }
   }
+
   .languages-container {
     .lang-desc {
-      color: rgba(256, 256, 256, 0.6);
+      color: rgba(255, 255, 255, 0.8);
     }
   }
 
-  .languages-list {
-    margin-bottom: 0;
-    li {
-      margin-bottom: 10px;
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-  }
-
+  .languages-list,
   .interests-list {
     margin-bottom: 0;
+
     li {
       margin-bottom: 10px;
+
       &:last-child {
         margin-bottom: 0;
       }
@@ -179,26 +258,56 @@ p {
   order: $resume-order;
   background: #fff;
   padding: 60px;
+
   .section-title {
-    font-family: "IBMVGA8",monospace;
+    font-family: "IBMVGA8", monospace;
     text-transform: uppercase;
     font-size: 20px;
     font-weight: 500;
-    color: darken($theme-color, 15%);
+    color: color.adjust($theme-color, $lightness: -15%);
     position: relative;
     margin-top: 0;
     margin-bottom: 20px;
   }
+
+  .section-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: currentColor;
+    vertical-align: middle;
+    margin-right: 8px;
+
+    .icon {
+      width: 15px;
+      height: 15px;
+      color: #fff;
+      vertical-align: 0;
+    }
+  }
+
   .section {
     margin-bottom: 60px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 
   .experiences-section,
-  .educations-section {
+  .certifications-section {
     .item {
       margin-bottom: 30px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
+
   .upper-row,
   .second-upper-row {
     position: relative;
@@ -206,9 +315,9 @@ p {
     margin-bottom: 2px;
     display: flex;
   }
+
   .job-title,
-  .degree,
-  .cert-title{
+  .cert-title {
     color: $text-color;
     font-size: 16px;
     margin-top: 0;
@@ -216,6 +325,7 @@ p {
     font-weight: 500;
     flex: 75%;
   }
+
   .time,
   .cert-url {
     position: absolute;
@@ -224,8 +334,8 @@ p {
     color: $text-grey;
     flex: 25%;
   }
+
   .company,
-  .university,
   .cert-org {
     margin-bottom: 10px;
     color: $text-grey;
@@ -236,34 +346,21 @@ p {
     font-weight: 400;
     margin-top: 0;
     margin-bottom: 5px;
-    color: darken($theme-color, 15%);
-  }
-  .projects-section {
-    .intro {
-      margin-bottom: 30px;
-    }
-    .item {
-      margin-bottom: 15px;
-    }
+    color: color.adjust($theme-color, $lightness: -15%);
   }
 
-  .publication-title {
-    font-size: 16px;
-    font-weight: 400;
-    color: $text-color;
-    margin-bottom: 1px;
-  }
-  .publication-authors {
-    font-style: italic;
-    color: $text-grey;
-    margin-bottom: 1px;
-  }
-  .publications-section {
+  .projects-section,
+  .oss-section {
     .intro {
       margin-bottom: 30px;
     }
+
     .item {
       margin-bottom: 15px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
     }
   }
 }
@@ -272,32 +369,46 @@ p {
   .item {
     margin-bottom: 15px;
     overflow: hidden;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
+
   .level-title {
     font-size: 14px;
     margin-top: 0;
     margin-bottom: 12px;
   }
+
   .level-bar {
     height: 12px;
     background: $smoky-white;
   }
+
   .level-bar-inner {
+    width: var(--level);
     height: 12px;
-    background: lighten($theme-color, 15%);
+    background: color.adjust($theme-color, $lightness: 15%);
   }
 }
 
 .footer {
   padding-top: 30px;
+
   .copyright {
     line-height: 1.6;
     color: $text-color-secondary;
     font-size: 13px;
   }
 
-  .fa-heart {
+  .icon-heart {
     color: $heart;
   }
 }
 
+@media (prefers-reduced-motion: reduce) {
+  .skillset .level-bar-inner {
+    transition: none !important;
+  }
+}

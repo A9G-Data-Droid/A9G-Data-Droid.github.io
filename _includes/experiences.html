@@ -2,10 +2,7 @@
 {% if experiences %}
 <section class="section experiences-section">
   <h2 class="section-title">
-    <span class="fa-stack fa-xs">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-briefcase fa-stack-1x fa-inverse"></i>
-    </span>
+    <span class="section-icon" aria-hidden="true">{% include icon.html name="briefcase" %}</span>
     {{ experiences.title }}
   </h2>
 
@@ -34,4 +31,3 @@
 
 </section><!--//section-->
 {% endif %}
-

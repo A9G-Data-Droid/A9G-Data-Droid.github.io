@@ -3,10 +3,7 @@
 <section class="skills-section section">
 
   <h2 class="section-title">
-    <span class="fa-stack fa-xs">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-wrench fa-stack-1x fa-inverse"></i>
-    </span>
+    <span class="section-icon" aria-hidden="true">{% include icon.html name="wrench" %}</span>
     {{ skills.title }}
   </h2>
 
@@ -17,8 +14,8 @@
 
       <h3 class="level-title">{{ skill.name }}</h3>
 
-      <div class="level-bar">
-        <div class="level-bar-inner" data-level="{{ skill.level }}">
+      <div class="level-bar" aria-hidden="true">
+        <div class="level-bar-inner" style="--level: {{ skill.level }};" data-level="{{ skill.level }}">
         </div>
       </div><!--//level-bar-->
 

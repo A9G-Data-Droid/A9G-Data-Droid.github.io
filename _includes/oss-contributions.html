@@ -2,18 +2,14 @@
 {% if oss %}
 <section class="section oss-section">
   <h2 class="section-title">
-    <span class="fa-stack fa-xs">
-      <i class="fas fa-circle fa-stack-2x"></i>
-      <i class="fas fa-box-open fa-stack-1x fa-inverse"></i>
-    </span>
+    <span class="section-icon" aria-hidden="true">{% include icon.html name="box-open" %}</span>
     {{ oss.title }}
   </h2>
 
   {% if oss.intro %}
   <div class="intro">
     <p>{{ oss.intro }}</p>
-  </div>
-  <!--//intro-->
+  </div><!--//intro-->
   {% endif %}
 
   {% for contribution in oss.contributions %}
@@ -31,10 +27,8 @@
     - <span class="project-tagline">{{ contribution.tagline }}</span>
     {% endif %}
 
-  </div>
-  <!--//item-->
+  </div><!--//item-->
   {% endfor %}
 
-</section>
-<!--//section-->
+</section><!--//section-->
 {% endif %}
