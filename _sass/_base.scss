@@ -129,13 +129,22 @@ small {
 }
 
 a {
-  color: var(--color-accent);
-  text-decoration: none;
+  color: var(--color-link);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  text-decoration-skip-ink: auto;
 
   &:hover,
   &:focus-visible {
-    text-decoration: underline;
-    color: var(--color-accent-hover);
+    color: var(--color-link-hover);
+    text-decoration-thickness: 2px;
+  }
+
+  &:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+    border-radius: 2px;
   }
 }
 
@@ -448,10 +457,10 @@ a {
 
   .project-title {
     font-size: 16px;
-    font-weight: 400;
+    font-weight: 500;
     margin-top: 0;
     margin-bottom: 5px;
-    color: var(--color-accent);
+    color: var(--color-text-primary);
   }
 
   .projects-section,
