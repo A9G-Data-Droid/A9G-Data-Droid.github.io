@@ -95,6 +95,14 @@ small {
   text-align: center;
 }
 
+.icon {
+  display: inline-block;
+  height: 1em;
+  width: auto;
+  vertical-align: -0.125em;
+  overflow: visible;
+}
+
 a {
   color: color.adjust($theme-color, $lightness: -15%);
   text-decoration: none;
@@ -167,12 +175,11 @@ a {
   .contact-list {
     margin-bottom: 0;
 
-    .fas,
-    .fab,
-    .far {
-      margin-right: 5px;
-      font-size: 18px;
-      vertical-align: middle;
+    .icon {
+      margin-right: 8px;
+      width: 18px;
+      height: 18px;
+      vertical-align: -0.2em;
     }
 
     li {
@@ -263,6 +270,25 @@ a {
     margin-bottom: 20px;
   }
 
+  .section-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: currentColor;
+    vertical-align: middle;
+    margin-right: 8px;
+
+    .icon {
+      width: 15px;
+      height: 15px;
+      color: #fff;
+      vertical-align: 0;
+    }
+  }
+
   .section {
     margin-bottom: 60px;
 
@@ -272,7 +298,6 @@ a {
   }
 
   .experiences-section,
-  .educations-section,
   .certifications-section {
     .item {
       margin-bottom: 30px;
@@ -292,7 +317,6 @@ a {
   }
 
   .job-title,
-  .degree,
   .cert-title {
     color: $text-color;
     font-size: 16px;
@@ -312,7 +336,6 @@ a {
   }
 
   .company,
-  .university,
   .cert-org {
     margin-bottom: 10px;
     color: $text-grey;
@@ -379,7 +402,7 @@ a {
     font-size: 13px;
   }
 
-  .fa-heart {
+  .icon-heart {
     color: $heart;
   }
 }

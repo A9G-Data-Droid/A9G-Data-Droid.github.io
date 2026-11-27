@@ -43,9 +43,12 @@
     -webkit-print-color-adjust: exact;
   }
 
-  .fa-inverse,
-  .fa-inverse::after,
-  .fa-inverse::before {
-    color: #ffffff !important;
+  .section-icon {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+
+    .icon {
+      color: #ffffff !important;
+    }
   }
 }
