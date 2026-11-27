@@ -1,27 +1,17 @@
 # Site Settings
 title: Adam Kauffman Resume
-url: 'https://akauffman.dev'
-
+url: 'https://adamkauffman.dev'
 description: Professional CV for Adam Burck Kauffman
-
-theme_skin: ceramic
-chrome_mobile_color: #use hex colors (ex:#1976d2) or leave empty if you don't want a color for chrome mobile searchbar
 
 # Plugins
 plugins:
   - jekyll-seo-tag
   - jekyll-sitemap
-  - jekyll-feed
-  - jekyll-redirect-from
 
 # Sass/SCSS
 sass:
   sass_dir: _sass
   style: compressed
-  silence_deprecations:
-    - import
-    - color-functions
-    - global-builtin
 
 # Build settings
 encoding: "utf-8"
@@ -48,9 +38,3 @@ exclude:
   - vendor/cache/
   - vendor/gems/
   - vendor/ruby/
-  - assets/plugins/font-awesome/css/all.min.css
-  - assets/plugins/font-awesome/css/regular.min.css
-  - assets/plugins/font-awesome/css/svg-with-js.min.css
-  - assets/plugins/font-awesome/css/v4-shims.min.css
-  - assets/plugins/font-awesome/webfonts/fa-regular-400.woff
-  - assets/plugins/font-awesome/webfonts/fa-regular-400.woff2
