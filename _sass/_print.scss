@@ -1,47 +1,51 @@
 @media print {
-   @page {
-      size: A4;
-   }
+  @page {
+    size: A4;
+  }
 
-   body {
-      font-size: 12pt;
-   }
+  body {
+    font-size: 12pt;
+    padding: 0;
+  }
 
-   img.avatar {
-      filter: grayscale(1);
-      -webkit-filter: greyscale(1);
-   }
+  .wrapper {
+    max-width: none;
+    box-shadow: none;
+  }
 
-   .main-wrapper .time {
-      float: right;
-      color: black !important;
-      -webkit-print-color-adjust: exact;
-   }
+  img.avatar {
+    filter: grayscale(1);
+  }
 
-   .sidebar-wrapper {
-      position: static;
-      float: right;
-      width: 40%;
-      -webkit-print-color-adjust: exact;
-   }
+  .main-wrapper .time {
+    float: right;
+    color: black !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
 
-   .remove-container.container-block {
-      display: none;
-   }
+  .sidebar-wrapper {
+    position: static;
+    float: right;
+    width: 40%;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
 
-   footer {
-      display: none;
-   }
+  footer {
+    display: none;
+  }
 
-   .skillset .level-bar-inner {
-      background-color: black !important;
-      -webkit-print-color-adjust: exact;
-   }
+  .skillset .level-bar-inner {
+    width: var(--level) !important;
+    background-color: black !important;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
 
-   .fa-inverse,
-   .fa-inverse:after,
-   .fa-inverse:before {
-      color: #ffffff !important;
-   }
-
+  .fa-inverse,
+  .fa-inverse::after,
+  .fa-inverse::before {
+    color: #ffffff !important;
+  }
 }
