@@ -47,4 +47,5 @@ graph TD;
     JavaScript --> TypeScript
     HTML --> Jekyll
     Jekyll --> Ruby
+    Ruby --> Ruby on Rails
 ```
