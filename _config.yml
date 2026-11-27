@@ -17,24 +17,7 @@ sass:
 encoding: "utf-8"
 
 exclude:
-  - .gitattributes
-  - .github/
-  - .gitignore
-  - .idea/
-  - .jekyll-cache/
-  - .jekyll-metadata
-  - .ruby-version
-  - .sass-cache/
-  - .tool-versions
   - CNAME
-  - Gemfile
-  - Gemfile.lock
   - README.md
   - docker-compose.yml
-  - gemfiles/
-  - node_modules/
   - start
-  - vendor/bundle/
-  - vendor/cache/
-  - vendor/gems/
-  - vendor/ruby/
